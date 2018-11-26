@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewData["Title"] = "Kamil";
+}
+
+<h2>Lista wiosek</h2>
+<p>Aktualny czas: @ViewData["czas"]</p>
+<p>Ilosc pobranych wiosek: @Model.Villages.Length</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>
+                @if ((int)ViewData["last_page"] >= 0)
+                {
+                    <a href="/@ViewContext.RouteData.Values["controller"].ToString()/@ViewContext.RouteData.Values["action"].ToString()/@ViewData["last_page"]" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">&laquo;</a>
+                }
+                else
+                {
+                    <a href="#" class="btn btn-primary btn-lg" role="button" disabled>&laquo;</a>
+                }
+
+                <a href="/@ViewContext.RouteData.Values["controller"].ToString()/@ViewContext.RouteData.Values["action"].ToString()/@ViewData["next_page"]" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">&raquo;</a>
+            </td>
+        </tr>
+    </thead>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Uid</th>
+            <th scope="col">X</th>
+            <th scope="col">Y</th>
+            <th scope="col">Name</th>
+            <th scope="col">Points</th>
+            <th scope="col">Stone</th>
+            <th scope="col">Wood</th>
+            <th scope="col">Iron</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var village in Model.Villages)
+        {
+            <tr>
+                <th scope="row">@village.Id</th>
+                <td>@village.Uid</td>
+                <td>@village.X</td>
+                <td>@village.X</td>
+                <td>@village.Name</td>
+                <td>@village.Points</td>
+                <td>@village.ResStone</td>
+                <td>@village.ResWood</td>
+                <td>@village.ResIron</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
